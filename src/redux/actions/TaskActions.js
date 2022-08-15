@@ -3,10 +3,10 @@ import {
   TASKS_DATA_LOADING,
   TASKS_DATA_SUCCESS,
   TASKS_DATA_FAILED,
+  SELECT_SINGLE_TASK,
 } from "../types";
 
 export const getAllTasks = async (dispatch) => {
-
   dispatch({
     type: TASKS_DATA_LOADING,
     payload: { data: [] },
@@ -25,4 +25,8 @@ export const getAllTasks = async (dispatch) => {
       payload: { data: [] },
     });
   }
+};
+
+export const selectSingleTask = (task) => (dispatch) => {
+  dispatch({ type: SELECT_SINGLE_TASK, payload: task });
 };

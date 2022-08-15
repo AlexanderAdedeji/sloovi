@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const EditTask
- = () => {
+const EditTask = () => {
+
+  // const task = useSelector((state)=>)
   return (
     <div>
       <form>
@@ -67,5 +69,4 @@ const EditTask
   );
 };
 
-export default EditTask
-;
+export default EditTask;

@@ -7,7 +7,7 @@ import TaskHeader from "../components/TaskHeader";
 import { useDispatch } from "react-redux";
 import Tasks from "../components/TasksList";
 import { getCompanyUsers } from "../redux/actions/userActions";
-import { getAllTasks } from "../redux/actions/getTaskActions";
+import { getAllTasks } from "../redux/actions/TaskActions";
 
 const Home = () => {
   const [views, setViews] = useState("list");

@@ -4,7 +4,7 @@ const initialState = {
   data: [],
 };
 
-const taskReducer = (state = initialState, action) => {
+const fetchTaskReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case types.TASKS_DATA_LOADING:
@@ -26,4 +26,4 @@ const taskReducer = (state = initialState, action) => {
   }
 };
 
-export default taskReducer;
+export default fetchTaskReducer;
