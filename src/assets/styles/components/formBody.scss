@@ -1,0 +1,22 @@
+#form-body {
+  background-color: #edf7fc;
+  width: 100%;
+  padding: 8px;
+
+  form {
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .delete-icon {
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .right-aside {
+        .cance-btn{
+cursor: pointer;
+        }
+      }
+    }
+  }
+}

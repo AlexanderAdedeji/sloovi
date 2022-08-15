@@ -1,0 +1,19 @@
+#task-header{
+    background-color: #F9F9FA;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border: 0.6px solid #E5E5E5;
+    padding: 4px 10px;
+    .title{
+        span{
+            color: #852E71;
+        }
+    }
+
+    .add-icon{
+        cursor: pointer;
+height: 100%;
+        border: 0.6px solid #E5E5E5;
+    }
+}

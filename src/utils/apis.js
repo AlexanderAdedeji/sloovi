@@ -28,3 +28,16 @@ export const fetchTasks = async () => {
     "https://stage.api.sloovi.com/task/lead_465c14d0e99e4972b6b21ffecf3dd691?company_id=company_413ef22b6237417fb1fba7917f0f69e7"
   );
 };
+
+export const updateTask = async (taskData, id) => {
+  return await axios.put(
+    `https://stage.api.sloovi.com/task/lead_465c14d0e99e4972b6b21ffecf3dd691/${id}?company_id=company_413ef22b6237417fb1fba7917f0f69e7`,
+    taskData
+  );
+};
+
+export const deleteTask = async (id) => {
+  return await axios.delete(
+    `https://stage.api.sloovi.com/task/lead_465c14d0e99e4972b6b21ffecf3dd691/${id}?company_id=company_413ef22b6237417fb1fba7917f0f69e7`
+  );
+};

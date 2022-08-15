@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
+import { useContext } from "react";
 import { useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
+import { HomeContext } from "../hooks/HomeContext";
 import { fetchUsers, addToTasks } from "../utils/apis";
 
 const AddTask = () => {
   const tasks = useSelector((state) => state);
+  const {setViews} = useContext(HomeContext)
 
   const companyUsers = useSelector((state) => state.companyUsers.data);
   console.log(companyUsers);
@@ -40,6 +43,10 @@ const AddTask = () => {
     return () => {};
   }, []);
 
+
+  const setViewsHandler = useCallback(() => {
+    setViews("list");
+  }, []);
   const submitHandler = async (e) => {
     e.preventDefault();
     const dataToSend = {
@@ -53,13 +60,14 @@ const AddTask = () => {
 
     try {
       const { data } = await addToTasks(dataToSend);
+      setViewsHandler();
     } catch (errors) {
       console.log(errors);
     }
   };
 
   return (
-    <div>
+    <div id="form-body">
       <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label for="exampleInputEmail1" className="form-label">
@@ -74,9 +82,6 @@ const AddTask = () => {
             name="task"
             onChange={(e) => onChangeHandler(e)}
           />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </div>
         </div>
 
         <div className="row">
@@ -93,9 +98,6 @@ const AddTask = () => {
                 aria-describedby="emailHelp"
                 onChange={(e) => onChangeHandler(e)}
               />
-              <div id="emailHelp" className="form-text">
-                We'll never share your email with anyone else.
-              </div>
             </div>
           </div>
           <div className="col-6">
@@ -136,13 +138,17 @@ const AddTask = () => {
           </div>
         </div>
 
-        <div>
+        <div className="btn-container">
+          <div></div>
+          <div className="right-aside">
           <button className="btn" type="button">
             Cancel
           </button>
           <button className="btn btn-success" type="submit">
             Save
           </button>
+          </div>
+
         </div>
       </form>
     </div>
