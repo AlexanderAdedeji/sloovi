@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
 import AddTask from "./components/AddTask";
 import TaskHeader from "./components/TaskHeader";
-import Tasks from "./components/Tasks";
+import Tasks from "./components/TasksList";
 import EditTask from "./components/EditTask";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";

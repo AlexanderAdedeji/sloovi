@@ -16,7 +16,7 @@ const taskReducer = (state = initialState, action) => {
         ...state,
         data: [...payload.data],
       };
-    case types.USER_DATA_FAILED:
+    case types.TASKS_DATA_FAILED:
       return {
         ...state,
         data: [],

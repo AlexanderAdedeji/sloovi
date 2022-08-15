@@ -22,3 +22,9 @@ export const addToTasks = async (taskData) => {
     taskData
   );
 };
+
+export const fetchTasks = async () => {
+  return await axios.get(
+    "https://stage.api.sloovi.com/task/lead_465c14d0e99e4972b6b21ffecf3dd691?company_id=company_413ef22b6237417fb1fba7917f0f69e7"
+  );
+};
