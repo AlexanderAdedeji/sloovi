@@ -42,11 +42,6 @@ const AddTask = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    // if (!addForm.task || addForm.date || addForm.time || addForm.assignedUser) {
-    //   toast.error("Fields are all requeired");
-    //   return;
-    // }
     const dataToSend = {
       assigned_user: addForm.assignedUser,
       task_date: addForm.date,

@@ -6,8 +6,8 @@ const Tasks = () => {
   const tasks = useSelector((state) => state.tasks.data);
   return (
     <div>
-      {tasks.map(() => (
-        <Task />
+      {tasks.map((singleTask) => (
+        <Task singleTask={singleTask} key={singleTask.id} />
       ))}
     </div>
   );

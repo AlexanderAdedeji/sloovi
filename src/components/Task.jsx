@@ -1,9 +1,9 @@
 import React from "react";
 
-const Task = () => {
+const Task = ({singleTask}) => {
   return (
     <div>
-      <h3>Hello world</h3>
+      <h3>Hello world </h3>
     </div>
   );
 };
