@@ -62,11 +62,13 @@ const Login = () => {
             <div class="login-form">
               <form onSubmit={handleSubmit}>
                 <input
+                type="email"
                   placeholder="email"
                   name="email"
                   onChange={(e) => onChangeHandler(e)}
                 />
                 <input
+                type="password"
                   placeholder="password"
                   name="password"
                   onChange={(e) => onChangeHandler(e)}

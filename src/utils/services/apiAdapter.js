@@ -49,3 +49,13 @@ export const ApiNoAuth = axios.create({
 export const setAccessToken = (token) => {
   localStorage.setItem("sessionId", token);
 };
+
+
+export const getCompanyId = () => {
+  const loginData =JSON.parse(localStorage.getItem("loginData"));
+
+  if(loginData !== null || loginData !==undefined){
+    return loginData['company_id']
+  }
+
+};
