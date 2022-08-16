@@ -16,7 +16,8 @@
       align-items: flex-start;
    
       .task-box {
-        width: 400px;
+        min-width: 400px;
+        width: fit-content;
         border-radius: 4px;
         margin-left: 20px;
         border: 0.3px solid #E5E5E5;

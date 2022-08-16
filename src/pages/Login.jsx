@@ -39,7 +39,7 @@ const Login = () => {
     }
   };
   return (
-    <div>
+    <div id="login-page">
       <div class="parent clearfix">
         <div class="bg-illustration">
           <img src="https://i.ibb.co/Pcg0Pk1/logo.png" alt="logo" />
