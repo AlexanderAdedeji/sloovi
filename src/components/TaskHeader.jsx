@@ -13,10 +13,10 @@ const TaskHeader = () => {
   };
   return (
     <div id="task-header">
-      <p className="title">
+      <div className="title">
       Tasks  <span>{tasks.length? tasks.length : "0"}</span>
-      </p>
-    <span className="add-icon" onClick={showAddTaskHandler}><AiOutlinePlus/></span>
+      </div>
+    <div className="add-icon" onClick={showAddTaskHandler}><AiOutlinePlus/></div>
     </div>
   );
 };

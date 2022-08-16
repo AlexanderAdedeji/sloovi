@@ -1,19 +1,28 @@
-#task-header{
-    background-color: #F9F9FA;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border: 0.6px solid #E5E5E5;
-    padding: 4px 10px;
-    .title{
-        span{
-            color: #852E71;
-        }
-    }
+#task-header {
+  background-color: #f9f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    .add-icon{
-        cursor: pointer;
-height: 100%;
-        border: 0.6px solid #E5E5E5;
+  height: 40px;
+
+  border: 0.6px solid #e5e5e5;
+  .title {
+    padding-left: 10px;
+    span {
+      color: #852e71;
+      font-size: 14px;
+      margin-left: 10px;
     }
+  }
+
+  .add-icon {
+    cursor: pointer;
+    height: 100%;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.6px solid #e5e5e5;
+  }
 }

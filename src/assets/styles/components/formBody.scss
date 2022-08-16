@@ -1,9 +1,13 @@
 #form-body {
   background-color: #edf7fc;
   width: 100%;
-  padding: 8px;
+  padding: 15px 10px;
 
   form {
+    .label {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
     .btn-container {
       display: flex;
       justify-content: space-between;
@@ -13,8 +17,9 @@
         font-size: 16px;
       }
       .right-aside {
-        .cance-btn{
-cursor: pointer;
+        .cancel-btn {
+          cursor: pointer;
+          font-size: 18px;
         }
       }
     }

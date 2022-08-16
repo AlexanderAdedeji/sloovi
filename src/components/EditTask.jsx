@@ -9,6 +9,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 const EditTask = () => {
   const task = useSelector((state) => state.task.data);
   const companyUsers = useSelector((state) => state.companyUsers.data);
+  const [btnLoader, setBtnLoader] = useState(false);
 
   const { setViews } = useContext(HomeContext);
   const [editTaskForm, setEditTaskForm] = useState({
@@ -35,10 +36,22 @@ const EditTask = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (
+      editTaskForm.date === "" ||
+      editTaskForm.time === "" ||
+      editTaskForm.assignedUser === 0 ||
+      editTaskForm.task === ""
+    ) {
+      toast.error("All fields are required");
+      setBtnLoader(false);
+      return;
+    }
+    var date = new Date("2015-08-25T15:35:58.000Z");
+    var seconds = date.getTime() / 1000;
     const dataToSend = {
       assigned_user: editTaskForm.assignedUser_id,
       task_date: editTaskForm.date,
-      task_time: 5400,
+      task_time: seconds,
       is_completed: 0,
       time_zone: 19800,
       task_msg: editTaskForm.task,
@@ -47,6 +60,7 @@ const EditTask = () => {
     try {
       const { data } = await updateTask(dataToSend, task.id);
       console.log(data);
+      toast.success("Tasks Updated Successfully");
       setViews("list");
     } catch (errors) {
       console.log(errors);
@@ -75,6 +89,7 @@ const EditTask = () => {
             type="text"
             value={editTaskForm.task}
             className="form-control"
+            name="task"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={(e) => onChangeHandler(e)}
@@ -89,6 +104,7 @@ const EditTask = () => {
               </label>
               <input
                 type="date"
+                name="date"
                 value={editTaskForm.date}
                 className="form-control"
                 id="exampleInputEmail1"
@@ -103,6 +119,7 @@ const EditTask = () => {
                 Time
               </label>
               <input
+                name="time"
                 type="time"
                 className="form-control"
                 id="exampleInputEmail1"
@@ -138,15 +155,22 @@ const EditTask = () => {
         <div className="btn-container">
           <div className="mx-2">
             <span className="delete-icon">
-            <RiDeleteBin5Line onClick={deleteSingleTask} />
-
+              <RiDeleteBin5Line onClick={deleteSingleTask} />
             </span>
           </div>
           <div className="right-aside">
-            <span className="cancel-btn mx-3" type="button" onClick={setViewsHandler}>
+            <span
+              className="cancel-btn mx-3"
+              type="button"
+              onClick={setViewsHandler}
+            >
               Cancel
             </span>
-            <button className="btn btn-success px-4" type="submit">
+            <button
+              className="btn btn-success px-4"
+              disabled={btnLoader}
+              type="submit"
+            >
               Save
             </button>
           </div>

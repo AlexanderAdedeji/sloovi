@@ -4,21 +4,18 @@ import { useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
 import { HomeContext } from "../hooks/HomeContext";
-import { fetchUsers, addToTasks } from "../utils/apis";
+import {  addToTasks } from "../utils/apis";
 
 const AddTask = () => {
-  const tasks = useSelector((state) => state);
   const {setViews} = useContext(HomeContext)
-
   const companyUsers = useSelector((state) => state.companyUsers.data);
-  console.log(companyUsers);
-  const [users, setUsers] = useState([]);
   const [addForm, setAddForm] = useState({
     task: "",
     date: "",
     time: "",
     assignedUser: 0,
   });
+  const[btnLoader, setBtnLoader] = useState(false)
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -28,49 +25,52 @@ const AddTask = () => {
     }));
   };
 
-  const getUsers = async () => {
-    try {
-      const { data } = await fetchUsers();
-      console.log(data);
-      setUsers(data.results.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getUsers();
-    return () => {};
-  }, []);
 
 
   const setViewsHandler = useCallback(() => {
     setViews("list");
-  }, []);
+  }, [setViews]);
+
+
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    setBtnLoader(true)
+    const date = new Date();
+    if(addForm.date==="" || !addForm.time ==="" || !addForm.assignedUser===0 || !addForm.task===""){
+      toast.error("All fields are required")
+      setBtnLoader(false)
+      return
+    }
+    let seconds = Math.floor(date.getTime(addForm.time) / 1000); 
+    let timeZone= Math.floor(date.getTimezoneOffset() * 1000)
+    console.log({seconds,timeZone})
     const dataToSend = {
       assigned_user: addForm.assignedUser,
       task_date: addForm.date,
-      task_time: 5400,
+      task_time: seconds,
       is_completed: 0,
-      time_zone: 19800,
+      time_zone: timeZone,
       task_msg: addForm.task,
     };
+    console.log(dataToSend)
 
     try {
       const { data } = await addToTasks(dataToSend);
+      
+      toast.success("Task added successfully")
       setViewsHandler();
     } catch (errors) {
-      console.log(errors);
+     
     }
+    setBtnLoader(false)
   };
 
   return (
     <div id="form-body">
       <form onSubmit={submitHandler}>
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
+          <label for="exampleInputEmail1" className="label">
             Task Description
           </label>
           <input
@@ -87,7 +87,7 @@ const AddTask = () => {
         <div className="row">
           <div className="col-6">
             <div className="mb-3">
-              <label for="date" className="form-label">
+              <label for="date" className="label">
                 Date
               </label>
               <input
@@ -102,7 +102,7 @@ const AddTask = () => {
           </div>
           <div className="col-6">
             <div className="mb-3">
-              <label for="time" className="form-label">
+              <label for="time" className="label">
                 Time
               </label>
               <input
@@ -118,7 +118,7 @@ const AddTask = () => {
         </div>
         <div className="">
           <div className="mb-3">
-            <label for="exampleInputEmail1" className="form-label">
+            <label for="exampleInputEmail1" className="label">
               Assign User
             </label>
             <select
@@ -129,7 +129,7 @@ const AddTask = () => {
               }}
             >
               <option>Select a user</option>
-              {users.map((user) => (
+              {companyUsers?.map((user) => (
                 <option value={user.id} key={user.id}>
                   {user.name}
                 </option>
@@ -141,10 +141,10 @@ const AddTask = () => {
         <div className="btn-container">
           <div></div>
           <div className="right-aside">
-          <button className="btn" type="button">
+          <span className="cancel-btn mx-4" type="button">
             Cancel
-          </button>
-          <button className="btn btn-success" type="submit">
+          </span>
+          <button className="btn btn-success px-4" disabled={btnLoader} type="submit">
             Save
           </button>
           </div>
